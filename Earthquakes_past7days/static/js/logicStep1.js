@@ -17,15 +17,15 @@ let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/sate
 
 // Create a base layer that holds both maps.
 let baseMaps = {
-    'Satellite Streets': satelliteStreets,
-    'Streets': streets
+    'Streets': streets,
+    'Satellite': satelliteStreets
 };
 
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
-    center: [43.7, -79.3],
-    zoom: 10,
-    layers: [satelliteStreets]
+    center: [39.5, -98.5],
+    zoom: 3,
+    layers: [streets]
 })
 
 // Accessing the airport GeoJSON URL
@@ -35,21 +35,20 @@ let torontoHoods = "https://raw.githubusercontent.com/wwpa65/Mapping_Earthquakes
 //     layer.bindPopup('Airport: ' + feature.properties.faa);
 // }
 
-// Create a style for the fill colors.
-var myStyle = {
-    "fillColor": "yellow",
-    "color": "blue",
-    "weight": 1,
-    "opacity": 1,
-    "fillOpacity": 0.2
-};
+// // Create a style for the fill colors.
+// var myStyle = {
+//     "fillColor": "yellow",
+//     "color": "blue",
+//     "weight": 1,
+//     "opacity": 1,
+//     "fillOpacity": 0.2
+// };
 
 
-d3.json(torontoHoods).then(function (data) {
-
-    L.geoJSON(data, {
-        style: myStyle
-    }).addTo(map);
+// Retrieve the earthquake GeoJSON data.
+d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
+  // Creating a GeoJSON layer with the retrieved data.
+  L.geoJSON(data).addTo(map);
 });
 
 // Pass our map layers into our layers control and add the layers control to the map.
