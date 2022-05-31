@@ -31,18 +31,18 @@ let map = L.map('mapid', {
 // Accessing the airport GeoJSON URL
 let airportData = "https://raw.githubusercontent.com/wwpa65/Mapping_Earthquakes/main/majorAirports.json";
 
+
 function buildPopup(feature, layer) {
-    // control.log(feature, layer);
-    layer.bindPopup("<h2>Airport code: " + feature.properties.faa + "</h2> <hr> <h3>Airport name: " + feature.properties.name + "</h3>")
+    layer.bindPopup('Airport: ' + feature.properties.faa);
 }
 
 d3.json(airportData).then(function (data) {
-    console.log(data);
-    // Creating a GeoJSON layer with the retrieved data.
+
     L.geoJSON(data, {
-        onEachfeature: buildPopup
-}).addTo(map);
+        onEachFeature: buildPopup
+    }).addTo(map);
 });
 
 // Pass our map layers into our layers control and add the layers control to the map.
+
 L.control.layers(baseMaps).addTo(map);
