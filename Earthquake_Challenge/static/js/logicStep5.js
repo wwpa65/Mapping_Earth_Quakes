@@ -30,7 +30,7 @@ let overlays = {
   Earthquakes: earthquakes
 };
 
-
+console.log("Still working");
 
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
