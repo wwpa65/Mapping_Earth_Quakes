@@ -156,10 +156,10 @@ d3.json(majorEarthquakedata).then(function (data) {
     };
   }
   function getColor(magnitude) {
-    if (magnitude > 5) {
+    if (magnitude > 6) {
       return "#ea2c2c";
     }
-    if (magnitude > 4) {
+    if (magnitude > 5) {
       return "#ea822c";
     }
       return "#ee9c00";
